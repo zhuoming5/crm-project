@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjpowernode.crm.settings.mapper.DicValueMapper" >
+
+  <resultMap id="BaseResultMap" type="com.bjpowernode.crm.settings.bean.DicValue" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="type_code" property="typeCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, value, text, order_no, type_code
+  </sql>
+
+  <select id="queryDicValuesByTypeCode" parameterType="string" resultMap="BaseResultMap">
+    select t.id, t.value
+    from tbl_dic_value t
+    where type_code=#{typeCode}
+    order by t.order_no asc
+  </select>
+
+</mapper>
